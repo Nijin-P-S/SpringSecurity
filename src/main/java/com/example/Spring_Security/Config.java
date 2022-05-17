@@ -30,7 +30,7 @@ public class Config extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         //We can define our authorization rules
         http
-                .httpBasic() //Added to get the response instead of html response when trying postman 
+                .httpBasic() //Added to get the response instead of html response when trying postman
                 .and()
                 .authorizeHttpRequests()
                 .antMatchers("/admin/**").hasAnyAuthority("admin")
