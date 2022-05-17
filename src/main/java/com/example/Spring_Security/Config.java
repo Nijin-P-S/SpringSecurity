@@ -3,6 +3,7 @@ package com.example.Spring_Security;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -24,6 +25,21 @@ public class Config extends WebSecurityConfigurerAdapter {
                 .password("$2a$10$ZQWT3Pui0BSj0FgwWPVZCeZs2UAJxQIhY6a7KO1q1uHMMnaCYyOSG")
                 .authorities("user");
     }
+
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        //We can define our authorization rules
+        http
+                .httpBasic() //Added to get the response instead of html response when trying postman 
+                .and()
+                .authorizeHttpRequests()
+                .antMatchers("/admin/**").hasAnyAuthority("admin")
+                .antMatchers("/user/**").hasAnyAuthority("user")
+                .antMatchers("/**").permitAll()
+                .and()
+                .formLogin();
+    }
+
 
 //    Mandatory bean required for the spring security to function(Will get "There is no PasswordEncoder mapped for the id "null"" error)
     @Bean
