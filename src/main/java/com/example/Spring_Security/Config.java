@@ -1,5 +1,6 @@
 package com.example.Spring_Security;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -10,6 +11,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
 public class Config extends WebSecurityConfigurerAdapter {
+
+    @Autowired
+    MyUserService myUserService;
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -28,6 +32,7 @@ public class Config extends WebSecurityConfigurerAdapter {
 
         //Code to define storage of credentials in database
 
+        auth.userDetailsService(myUserService);
 
     }
 

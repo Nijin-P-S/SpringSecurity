@@ -41,6 +41,12 @@ public class MyUser implements UserDetails {
         2.
      */
 
+//    private boolean accountExpired;
+//    private boolean accountLocked;
+//    private boolean credentialsLocked;
+//    private boolean enabled;
+
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         String[] authority_list = this.authorities.split(DELIMITER);
