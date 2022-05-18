@@ -4,6 +4,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -15,7 +16,8 @@ public class Controller {
     @GetMapping("/user/hello")
     public String sayUserHello(){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        User user = (User) authentication.getPrincipal();
+//        User user = (User) authentication.getPrincipal();
+        MyUser user = (MyUser) authentication.getPrincipal();
         return "Hello User : "+ user.getUsername() ;
     }
 
@@ -23,7 +25,8 @@ public class Controller {
     @GetMapping("/admin/hello")
     public String sayAdminHello(){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        User user = (User) authentication.getPrincipal();
+//        User user = (User) authentication.getPrincipal();
+        MyUser user = (MyUser) authentication.getPrincipal();
         return "Hello Admin : "+ user.getUsername() ;
     }
 
@@ -31,5 +34,17 @@ public class Controller {
     @GetMapping("/hello")
     public String sayHello(){
         return "Hello Guest!!!";
+    }
+
+    //Only this API can be invoked by admin and user both
+    @GetMapping("/user/attendance")
+    public Integer getAttendance(){
+        return 0;
+    }
+
+    //Only by User
+    @PostMapping("/user/attendance")
+    public String submitAttendance(){
+        return null;
     }
 }
