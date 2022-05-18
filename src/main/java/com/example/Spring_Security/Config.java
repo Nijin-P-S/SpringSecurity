@@ -16,7 +16,7 @@ public class Config extends WebSecurityConfigurerAdapter {
         //We can define how we want to authenticate
 
         //Code to define hardcode inmemory user and password and authorities(If not given it will error out)
-        auth.inMemoryAuthentication()
+        /*auth.inMemoryAuthentication()
                 .withUser("Nijin")
                 .password("$2a$10$J6WcNJncyhTdrUKgj5JNeuk3BUc74CiHpT4vZrt3w6fx/DNLWm/s6")
                 .authorities("admin")
@@ -24,6 +24,11 @@ public class Config extends WebSecurityConfigurerAdapter {
                 .withUser("abc")
                 .password("$2a$10$ZQWT3Pui0BSj0FgwWPVZCeZs2UAJxQIhY6a7KO1q1uHMMnaCYyOSG")
                 .authorities("user");
+         */
+
+        //Code to define storage of credentials in database
+
+
     }
 
     @Override
